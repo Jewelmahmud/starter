@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starter Kit</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="assets/css/plugin.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <div class="voice">
+        <form id="voiceform">
+            <input type="text" id="input" placeholder="Search" name="search">
+            <button><i class="icofont-mic"></i></button>
+        </form>
+    </div>
+    <script type="text/javascript" src="assets/js/plugin.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <script>
+        $.fn.toggleHTML = function(t1, t2){
+
+            if(this.html() == t1){
+                this.html(t2);
+            }else{                   
+                this.html(t1);
+            }
+            return this;
+
+        };
+        if (annyang) {
+        // Let's define a command.
+        const commands = {
+            'home': () => { 
+                window.location.replace("index.html");
+            },
+            'about': ()=> {
+                window.location.replace("about.html");
+            }
+        };
+
+        // Add our commands to annyang
+        // annyang.addCommands(commands);
+
+        // Start listening.
+        var clickcom = $("#voiceform button");
+
+        clickcom.click(function(e){
+            e.preventDefault();
+            $(this).toggleHTML('<i class="icofont-mic-mute"></i>', '<i class="icofont-mic"></i>');
+            annyang.start();
+        });
+        
+        }
+    </script>
+</body>
+</html>
